@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html ng-app="ngLeakDemo">
+
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+ <!-- <script src="https://code.jquery.com/jquery-1.10.2.js" ></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">Angular Routing Example with memory leak</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#page2"><i class="fa fa-shield"></i> Page 2</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+
+    <div ng-view></div>
+    
+  </div>
+
+</body>
+
+</html>

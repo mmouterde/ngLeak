@@ -1,0 +1,43 @@
+<div class="jumbotron">
+
+	<h3>Try it on <a href="http://embed.plnkr.co/2lzsbYARHVpFy2H9eAVA/preview">Plunker</a></h3>
+	<h3>Fork it on <a href="https://github.com/mmouterde/ngLeak"><i class="fa fa-github"></i> Github</a></h3>
+
+	<h2>How to use this demo :</h2>
+
+	<ul>
+		<li>Add this <a href="javascript:(function checkLeak(){var e=function(e){for(var t in e){var n=undefined;if(t.match(/^jQuery\d/)&&e[t]){n=$.cache[e[t]].events}if(t.match(/^ng\d/)&&e[t]){n=angular.element.cache[e[t]].events}if(n){for(var r in n){var i=[];var s=[];for(var o=0;o<n[r].length;o++){var u;if(angular.isFunction(n[r][o])){u=n[r][o].toString()}else{u=n[r][o].handler.toString()}if(i.indexOf(u)!==-1){if(s.indexOf(u)===-1){console.log('Memory leak with this event handler : \n'+u);s.push(u)}}else{i.push(u)}}i=[];s=[]}n=undefined}}};var t=function(n){e(n);for(var r=0;r<n.childNodes.length;r++){t(n.childNodes[r])}};t(window.document.body);console.log('Done.')})();">link</a> in your bookmarks (as a bookmarklet)</li>
+		<li>Switch to page2 then back to home two time (at least)</li>
+		<li>Open your console</li>
+		<li>Click on your new bookmark</li>
+		<li>See the code of the function anormaly registred twice (at least)
+		<pre><code>
+Memory leak with this event handler :
+function eventHandler(e) {
+//YEAH ! I'AM THE MEMORY LEAK PART !!!
+
+//Here I have a reference to the current scope for ever ;o)
+scope.toString();
+}
+Done.
+		</code></pre>
+
+		<li>Look in the code where this function is defined as event handler, here is the problem</li>
+		</li>
+	</ul>
+
+	<h2>Other tool : Chrome Profiler</h2>
+
+	<p>This solution could also be effective, but in bigger example could be vain.</p>
+	<ul>
+		<li>Switch to page2 then back to home two time (at least)</li>
+		<li>Take a Heap Snapshot on the Chrome debug/Profile tools</li>
+		<li>
+			<p>You get remaining scope list as below</p>
+		<img src="scopeInProfiler.jpg"/>
+		<li>You know which data should not be here but... try to find why...</li>
+		</li>
+	</ul>
+
+
+</div>

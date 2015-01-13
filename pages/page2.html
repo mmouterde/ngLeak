@@ -1,0 +1,7 @@
+<div class="jumbotron text-center">
+	<h2 evil>Page2 : a page with an evil directive and loaded data. (Ultimate Frisbee Club from France with duplicates)</h2>
+	<img src="spinner.gif" ng-if="data.length===0"/>
+	<div ng-repeat="club in data">
+		{{club.name}} - {{club.city}}
+	</div>
+</div>
